@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
-import { MovieContext } from '../MovieContext/MovieListProvider';
-const Navbar = () => {
-    const [movie, setMovie] = useContext(MovieContext)
-    return (
-        <header>
-            moveList: {movie.length}
+import Styles from './Navbar.module.css';
 
+const Navbar = ({ totalItems }) => {
+
+    return (
+        <header className={Styles.navbar}>
+            <span>{totalItems.length}</span>
         </header>
     );
 }

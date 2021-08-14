@@ -1,0 +1,8 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  background-color: rgb(217, 241, 233);
+}
