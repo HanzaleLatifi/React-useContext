@@ -4,7 +4,7 @@ import { useProducts, useProductsAction } from '../Provider/ProductProvider';
 
 const ProductList = () => {
     const products = useProducts();
-    const { decHandler, deleteHandler, incHandler, changeHandler } = useProductsAction();
+    const dispatch = useProductsAction();
 
 
     return (
@@ -13,10 +13,10 @@ const ProductList = () => {
 
             {products.map(product => {
                 return <Product key={product.id} name={product.title} price={product.price} count={product.count}
-                    onDelete={() => deleteHandler(product.id)}
-                    onInc={() => incHandler(product.id)}
-                    onChange={(e) => changeHandler(e, product.id)}
-                    onDec={() => decHandler(product.id)}
+                    onDelete={() => dispatch({ type: 'delete', id: product.id })}
+                    onInc={() => dispatch({ type: 'increment', id: product.id })}
+                    onChange={(e) => dispatch({ type: 'change', id: product.id, event: e })}
+                    onDec={() => dispatch({ type: 'decrement', id: product.id })}
                 />
             })}
 

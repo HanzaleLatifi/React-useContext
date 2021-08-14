@@ -4,7 +4,7 @@ import { FiTrash2 } from 'react-icons/fi'
 
 const Product = (props) => {
     return (
-        <div className={styles.product} onClick={props.click} >
+        <div className={styles.product}  >
             <p>name:{props.name}</p>
             <p>price:{props.price}</p>
             <input className={styles.input} value={props.name} onChange={props.onChange}></input>
