@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import Product from '../Product/Product';
+import { useProducts, useProductsAction } from '../Provider/ProductProvider';
 
-class ProductList extends Component {
+const ProductList = () => {
+    const products = useProducts();
+    const { decHandler, deleteHandler, incHandler, changeHandler } = useProductsAction();
 
-    render() {
-        return (
-            <>
-                {!this.props.products.length && <p>empty</p>}
 
-                {this.props.products.map(product => {
-                    return <Product key={product.id} name={product.title} price={product.price} count={product.count}
-                        onDelete={() => this.props.onDelete(product.id)}
-                        onInc={() => this.props.onInc(product.id)}
-                        onChange={(e) => this.props.onChange(e, product.id)}
-                        onDec={() => this.props.onDec(product.id)}
-                    />
-                })}
+    return (
+        <>
+            {!products.length && <p>empty</p>}
 
-            </>
-        );
-    }
+            {products.map(product => {
+                return <Product key={product.id} name={product.title} price={product.price} count={product.count}
+                    onDelete={() => deleteHandler(product.id)}
+                    onInc={() => incHandler(product.id)}
+                    onChange={(e) => changeHandler(e, product.id)}
+                    onDec={() => decHandler(product.id)}
+                />
+            })}
+
+        </>
+    );
 }
 
 export default ProductList;
+

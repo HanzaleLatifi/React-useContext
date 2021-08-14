@@ -1,10 +1,13 @@
 import Styles from './Navbar.module.css';
+import { useProducts } from '../Provider/ProductProvider';
 
-const Navbar = ({ totalItems }) => {
+const Navbar = () => {
+    const products = useProducts();
+
 
     return (
         <header className={Styles.navbar}>
-            <span>{totalItems.length}</span>
+            <span>{products.length}</span>
         </header>
     );
 }
