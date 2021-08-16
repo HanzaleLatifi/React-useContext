@@ -56,12 +56,12 @@ const reducer = (state, action) => {
 
         }
         case "filter": {
-            if (action.event.target.value === "") {
+            if (action.event.value === "") {
                 return productsData;
             }
 
             else {
-                const update = productsData.filter((p) => p.availableSizes.indexOf(action.event.target.value) >= 0)
+                const update = productsData.filter((p) => p.availableSizes.indexOf(action.event.value) >= 0)
                 return update;
             }
 
