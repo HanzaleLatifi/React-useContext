@@ -1,5 +1,6 @@
 import React, { useContext, useReducer } from 'react';
 import { productsData } from '../../database/products';
+import _ from "lodash";
 
 const ProductContext = React.createContext();
 const ProductContextDispatcher = React.createContext();
@@ -56,13 +57,23 @@ const reducer = (state, action) => {
 
         }
         case "filter": {
-            if (action.event.value === "") {
+            if (action.selected.value === "") {
                 return productsData;
             }
 
             else {
-                const update = productsData.filter((p) => p.availableSizes.indexOf(action.event.value) >= 0)
+                const update = productsData.filter((p) => p.availableSizes.indexOf(action.selected.value) >= 0)
                 return update;
+            }
+
+        }
+        case "sort": {
+            const products = [...state];
+            if (action.selected.value === 'highest') {
+                return _.orderBy(products, ["price"], ['desc']);
+
+            } else {
+                return _.orderBy(products, ["price"], ['asc']);
             }
 
         }
