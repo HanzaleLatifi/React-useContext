@@ -2,6 +2,7 @@ import { useProductsAction } from '../Provider/ProductProvider';
 import React, { useState } from 'react';
 import Select from 'react-select';
 import styles from './Filter.module.css'
+import Search from '../Search/Search';
 
 const options = [
     { value: 'XS', label: 'XS' },
@@ -20,13 +21,13 @@ const sortOptions = [
 const FilterProducts = () => {
     const dispatch = useProductsAction();
 
-    const [val, setVal] = useState('') //maybe lazem shod ;/
+    const [filter, setFilter] = useState('') //maybe lazem shod ;/
     const [sort, setSort] = useState('');
 
 
 
     const changeHandler = (selectedOption) => {
-        setVal(selectedOption);
+        setFilter(selectedOption);
         dispatch({ type: 'filter', selected: selectedOption })
         dispatch({ type: 'sort', selected: sort })
 
@@ -41,25 +42,29 @@ const FilterProducts = () => {
 
 
     return (
-        <div className={styles.filter} >
-            <div>
-                <p>order by size :</p>
-                <Select
-                    value={val}
-                    onChange={changeHandler}
-                    options={options}
-                    className={styles.select}
-                />
+        <div  >
+            <Search filter={filter} />
+            <div className={styles.filter}>
+                <div>
+                    <p>order by size :</p>
+                    <Select
+                        value={filter}
+                        onChange={changeHandler}
+                        options={options}
+                        className={styles.select}
+                    />
+                </div>
+                <div>
+                    <p>order by price :</p>
+                    <Select
+                        value={sort}
+                        onChange={sortHandler}
+                        options={sortOptions}
+                        className={styles.select}
+                    />
+                </div>
             </div>
-            <div>
-                <p>order by price :</p>
-                <Select
-                    value={sort}
-                    onChange={sortHandler}
-                    options={sortOptions}
-                    className={styles.select}
-                />
-            </div>
+
 
 
         </div >
