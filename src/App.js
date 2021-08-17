@@ -4,6 +4,7 @@ import ProductList from './components/ProductList/ProductList';
 import Navbar from './components/Navbar/Navbar';
 import ProductProvider from './components/Provider/ProductProvider';
 import FilterProducts from './components/FilterProducts/FilterProducts';
+import Search from './components/Search/Search';
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
 
             <ProductProvider>
                 <Navbar />
+                <Search />
                 <FilterProducts />
                 <ProductList />
             </ProductProvider>
